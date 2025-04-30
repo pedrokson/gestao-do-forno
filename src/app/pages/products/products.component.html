@@ -35,8 +35,8 @@
           <td>{{ p.preco | currency:'BRL' }}</td>
           <td>{{ p.estoque }}</td>
           <td>
-            <button class="btn btn-sm btn-warning me-1" disabled>Editar</button>
-            <button class="btn btn-sm btn-danger" disabled>Excluir</button>
+            <button class="btn btn-sm btn-warning me-1" (click)="editProduto(p)">Editar</button>
+            <button class="btn btn-sm btn-danger"(click)="deleteProduto(p)" >Excluir</button>
           </td>
         </tr>
       </tbody>
