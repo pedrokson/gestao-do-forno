@@ -1,0 +1,37 @@
+<div *ngIf="router.url === '/login'; else mainLayout">
+  <router-outlet></router-outlet>
+</div>
+
+
+<ng-template #mainLayout>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-light border-end" id="sidebar-wrapper">
+      <div class="sidebar-heading border-bottom bg-light">Padaria</div>
+      <div class="list-group list-group-flush">
+        <a routerLink="/" class="list-group-item list-group-item-action list-group-item-light p-3">Dashboard</a>
+        <a routerLink="/products" class="list-group-item list-group-item-action list-group-item-light p-3">Produtos</a>
+        <a routerLink="/sales" class="list-group-item list-group-item-action list-group-item-light p-3">Vendas</a>
+        <a routerLink="/reports" class="list-group-item list-group-item-action list-group-item-light p-3">Relatórios</a>
+      </div>
+    </div>
+
+    <!-- Page content wrapper -->
+    <div id="page-content-wrapper">
+      <!-- Top navigation -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+        <div class="container-fluid">
+          <button class="btn btn-primary" id="sidebarToggle">☰</button>
+          <div class="d-flex ms-auto">
+            <button class="btn btn-outline-light" (click)="logout()">Sair</button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main content -->
+      <div class="container-fluid mt-4">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,45 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow-sm" style="max-width: 400px; width: 100%; background-color: lightgray;">
+      <form (ngSubmit)="login()">
+        <h2 class="text-center mb-4">Login</h2>
+        <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+            {{ errorMessage }}
+          </div>
+        <div class="mb-3">
+          <input
+            type="email"
+            [(ngModel)]="email"
+            placeholder="Email"
+            class="form-control"
+            id="exampleInputEmail1"
+            name="email"
+            required
+          />
+        </div>
+  
+        <div class="input-group mb-3">
+          <input
+            [type]="passwordVisible ? 'text' : 'password'"
+            [(ngModel)]="password"
+            class="form-control"
+            placeholder="Senha"
+            id="exampleInputPassword1"
+            name="password"
+            required
+          />
+          <button
+            type="button"
+            (click)="togglePasswordVisibility()"
+            class="btn btn-outline-secondary"
+            aria-label="Mostrar ou ocultar senha"
+          >
+            {{ passwordVisible ? '🙈' : '👁️' }}
+          </button>
+        </div>
+  
+        <button style="width: 100%;" class="btn btn-primary" type="submit">
+          Entrar
+        </button>
+      </form>
+    </div>
+  </div>
