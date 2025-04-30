@@ -7,12 +7,20 @@
   <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
     <div class="bg-light border-end" id="sidebar-wrapper">
-      <div class="sidebar-heading border-bottom bg-light">Padaria</div>
+      <div class="sidebar-heading border-bottom bg-light">Gestão do Forno</div>
       <div class="list-group list-group-flush">
-        <a routerLink="/" class="list-group-item list-group-item-action list-group-item-light p-3">Dashboard</a>
-        <a routerLink="/products" class="list-group-item list-group-item-action list-group-item-light p-3">Produtos</a>
-        <a routerLink="/sales" class="list-group-item list-group-item-action list-group-item-light p-3">Vendas</a>
-        <a routerLink="/reports" class="list-group-item list-group-item-action list-group-item-light p-3">Relatórios</a>
+        <a routerLink="/" class="list-group-item list-group-item-action list-group-item-light p-3 d-flex align-items-center">
+          <span class="material-icons me-2">dashboard</span> Dashboard
+        </a>
+        <a routerLink="/products" class="list-group-item list-group-item-action list-group-item-light p-3 d-flex align-items-center">
+          <span class="material-icons me-2">inventory_2</span> Produtos
+        </a>
+        <a routerLink="/sales" class="list-group-item list-group-item-action list-group-item-light p-3 d-flex align-items-center">
+          <span class="material-icons me-2">point_of_sale</span> Vendas
+        </a>
+        <a routerLink="/reports" class="list-group-item list-group-item-action list-group-item-light p-3 d-flex align-items-center">
+          <span class="material-icons me-2">bar_chart</span> Relatórios
+        </a>
       </div>
     </div>
 
