@@ -7,29 +7,42 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-login',
   imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-
   email: any;
   password: any;
   passwordVisible: boolean = false;
   errorMessage: string = '';
 
-  constructor(
-    private router: Router,
-    private authService: AuthService
-  ) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   login() {
-    if (this.email === 'admin@padaria.com' && this.password === '123456') {
-      this.authService.login();
-      this.router.navigate(['/']);
-    } else {
-      this.errorMessage = 'Usuário ou senha inválidos';
+    if (!this.email || !this.password) {
+      this.errorMessage = 'Preencha todos os campos!';
+      return;
     }
+
+    this.authService.login(this.email, this.password).subscribe({
+      next: (res) => {
+        if (res.token) {
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['/']);
+        } else {
+          this.errorMessage = 'Email ou senha inválidos!';
+        }
+      },
+      error: (err) => {
+        this.errorMessage = 'Email ou senha inválidos!';
+      },
+    });
   }
+
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
+  }
+
+  navigateToRegister() {
+    this.router.navigate(['/register-user']);
   }
 }

@@ -14,6 +14,10 @@ export class AppComponent {
   isSidebarCollapsed = false;
   constructor(public router: Router, private authService: AuthService) {}
 
+  public isPublicRoute(): boolean {
+    return ['/login', '/register-user'].includes(this.router.url);
+  }
+  
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);

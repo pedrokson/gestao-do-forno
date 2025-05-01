@@ -1,22 +1,37 @@
-<div *ngIf="router.url === '/login'; else mainLayout">
+<div *ngIf="isPublicRoute(); else mainLayout">
   <router-outlet></router-outlet>
 </div>
 
 <ng-template #mainLayout>
   <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
-    <div class="bg-light border-end" id="sidebar-wrapper">
+    <div
+      [class.collapsed]="isSidebarCollapsed"
+      class="bg-light border-end"
+      id="sidebar-wrapper"
+    >
+      <!-- Botão de colapso dentro da sidebar -->
+      <button
+        class="btn btn-light position-absolute top-50 end-0 translate-middle-y p-1"
+        style="z-index: 1000"
+        (click)="toggleSidebar()"
+        aria-label="Colapsar sidebar"
+      >
+        <span class="material-icons">
+          {{ isSidebarCollapsed ? "chevron_right" : "chevron_left" }}
+        </span>
+      </button>
+
       <!-- Cabeçalho -->
       <div
-        style="background-color: darkgoldenrod;"
         (click)="navigateToHome()"
-        class="sidebar-heading border-bottom bg-light d-flex align-items-center gap-2 px-3 py-2"
+        class="sidebar-heading bg-warning text-dark d-flex align-items-center gap-2 px-3 py-2"
       >
         <span class="material-symbols-outlined">breakfast_dining</span>
         <span>Gestão do Forno</span>
       </div>
 
-      <!-- Menu lateral (empilhado) -->
+      <!-- Menu lateral -->
       <div class="list-group list-group-flush">
         <a
           (click)="navigateToDashboard()"
@@ -51,7 +66,6 @@
 
     <!-- Conteúdo principal -->
     <div id="page-content-wrapper">
-      <!-- Top nav -->
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
         <div class="container-fluid">
           <div class="d-flex ms-auto">
@@ -62,7 +76,6 @@
         </div>
       </nav>
 
-      <!-- Conteúdo da rota -->
       <div class="container-fluid mt-4">
         <router-outlet></router-outlet>
       </div>

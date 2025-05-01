@@ -1,35 +1,31 @@
+html, body, #wrapper {
+  height: 100%;
+}
+
 #wrapper {
   display: flex;
   width: 100%;
 }
 
 #sidebar-wrapper {
-  min-width: 250px;
-  max-width: 250px;
-}
-
-#page-content-wrapper {
-  flex: 1;
-  width: 100%;
-}
-
-.material-symbols-outlined {
-  vertical-align: middle;
-  font-size: 24px;
-  line-height: 1;
-}
-
-#sidebar-wrapper {
   width: 240px;
-  /* largura fixa */
   min-width: 240px;
   max-width: 240px;
   flex-shrink: 0;
+  height: 100vh;
+  transition: width 0.3s ease;
+  position: relative;
 }
 
-#page-content-wrapper {
-  flex: 1;
-  overflow-x: auto;
+#sidebar-wrapper.collapsed {
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
+}
+
+#sidebar-wrapper.collapsed .sidebar-heading span:last-child,
+#sidebar-wrapper.collapsed .list-group-item span:last-child {
+  display: none;
 }
 
 .sidebar-heading {
@@ -39,4 +35,22 @@
 
 .list-group-item {
   white-space: nowrap;
+  transition: padding 0.3s ease;
+}
+
+#sidebar-wrapper.collapsed .list-group-item {
+  padding-left: 1rem !important;
+}
+
+#page-content-wrapper {
+  flex: 1;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.material-symbols-outlined,
+.material-icons {
+  vertical-align: middle;
+  font-size: 24px;
+  line-height: 1;
 }
