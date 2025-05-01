@@ -16,6 +16,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return localStorage.getItem(this.storageKey) === 'true';
+    if (typeof window === 'undefined') return false; // 👈 evita erro no SSR
+    return localStorage.getItem(this.storageKey) === 'true'; // Corrigido para usar 'isLoggedIn'
   }
 }

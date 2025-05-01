@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Produto, ProdutoService } from '../../services/produto.service';
 
@@ -10,7 +10,7 @@ import { Produto, ProdutoService } from '../../services/produto.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
   produtos: Produto[] = [];
 
   nome = '';
@@ -22,17 +22,23 @@ export class ProductsComponent {
 
   constructor(
     private produtoService: ProdutoService // Injetando o serviço de produtos
-  ) {}
+  ) {
+    console.log('Constructor chamado');
+  }
 
   ngOnInit() {
+    debugger
+    console.log('ngOnInit chamado');
     this.loadProdutos();
   }
 
   loadProdutos() {
     debugger
     this.produtoService.getAll().subscribe((res) => {
+      console.log('Recebido da API:', res); // 👈 veja no console
       this.produtos = res;
     });
+    console.log(this.produtos);
   }
 
   addProduto() {
