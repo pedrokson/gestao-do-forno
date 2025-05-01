@@ -2,41 +2,67 @@
   <router-outlet></router-outlet>
 </div>
 
-
 <ng-template #mainLayout>
   <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
     <div class="bg-light border-end" id="sidebar-wrapper">
-      <div class="sidebar-heading border-bottom bg-light">Gestão do Forno</div>
+      <!-- Cabeçalho -->
+      <div
+        style="background-color: darkgoldenrod;"
+        (click)="navigateToHome()"
+        class="sidebar-heading border-bottom bg-light d-flex align-items-center gap-2 px-3 py-2"
+      >
+        <span class="material-symbols-outlined">breakfast_dining</span>
+        <span>Gestão do Forno</span>
+      </div>
+
+      <!-- Menu lateral (empilhado) -->
       <div class="list-group list-group-flush">
-        <a routerLink="/" class="list-group-item list-group-item-action list-group-item-light p-3 d-flex align-items-center">
-          <span class="material-icons me-2">dashboard</span> Dashboard
+        <a
+          (click)="navigateToDashboard()"
+          class="list-group-item list-group-item-action list-group-item-light d-flex align-items-center gap-2 px-3 py-2"
+        >
+          <span class="material-icons">dashboard</span>
+          <span>Dashboard</span>
         </a>
-        <a routerLink="/products" class="list-group-item list-group-item-action list-group-item-light p-3 d-flex align-items-center">
-          <span class="material-icons me-2">inventory_2</span> Produtos
+        <a
+          (click)="navigateToProducts()"
+          class="list-group-item list-group-item-action list-group-item-light d-flex align-items-center gap-2 px-3 py-2"
+        >
+          <span class="material-icons">inventory_2</span>
+          <span>Produtos</span>
         </a>
-        <a routerLink="/sales" class="list-group-item list-group-item-action list-group-item-light p-3 d-flex align-items-center">
-          <span class="material-icons me-2">point_of_sale</span> Vendas
+        <a
+          (click)="navigateToSales()"
+          class="list-group-item list-group-item-action list-group-item-light d-flex align-items-center gap-2 px-3 py-2"
+        >
+          <span class="material-icons">point_of_sale</span>
+          <span>Vendas</span>
         </a>
-        <a routerLink="/reports" class="list-group-item list-group-item-action list-group-item-light p-3 d-flex align-items-center">
-          <span class="material-icons me-2">bar_chart</span> Relatórios
+        <a
+          (click)="navigateToReport()"
+          class="list-group-item list-group-item-action list-group-item-light d-flex align-items-center gap-2 px-3 py-2"
+        >
+          <span class="material-icons">bar_chart</span>
+          <span>Relatórios</span>
         </a>
       </div>
     </div>
 
-    <!-- Page content wrapper -->
+    <!-- Conteúdo principal -->
     <div id="page-content-wrapper">
-      <!-- Top navigation -->
+      <!-- Top nav -->
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
         <div class="container-fluid">
-          <button class="btn btn-primary" id="sidebarToggle">☰</button>
           <div class="d-flex ms-auto">
-            <button class="btn btn-outline-light" (click)="logout()">Sair</button>
+            <button class="btn btn-outline-light" (click)="logout()">
+              Sair
+            </button>
           </div>
         </div>
       </nav>
 
-      <!-- Main content -->
+      <!-- Conteúdo da rota -->
       <div class="container-fluid mt-4">
         <router-outlet></router-outlet>
       </div>
