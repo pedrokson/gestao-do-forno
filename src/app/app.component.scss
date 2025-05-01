@@ -1,14 +1,42 @@
 #wrapper {
-    display: flex;
-    width: 100%;
-  }
-  
-  #sidebar-wrapper {
-    min-width: 250px;
-    max-width: 250px;
-  }
-  
-  #page-content-wrapper {
-    flex: 1;
-    width: 100%;
-  }
+  display: flex;
+  width: 100%;
+}
+
+#sidebar-wrapper {
+  min-width: 250px;
+  max-width: 250px;
+}
+
+#page-content-wrapper {
+  flex: 1;
+  width: 100%;
+}
+
+.material-symbols-outlined {
+  vertical-align: middle;
+  font-size: 24px;
+  line-height: 1;
+}
+
+#sidebar-wrapper {
+  width: 240px;
+  /* largura fixa */
+  min-width: 240px;
+  max-width: 240px;
+  flex-shrink: 0;
+}
+
+#page-content-wrapper {
+  flex: 1;
+  overflow-x: auto;
+}
+
+.sidebar-heading {
+  font-weight: bold;
+  padding: 12px;
+}
+
+.list-group-item {
+  white-space: nowrap;
+}
