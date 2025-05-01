@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
@@ -22,12 +22,10 @@ export class LoginComponent {
   ) {}
 
   login() {
-    debugger
     if (this.email === 'admin@padaria.com' && this.password === '123456') {
       this.authService.login();
       this.router.navigate(['/']);
     } else {
-      // Login inválido
       this.errorMessage = 'Usuário ou senha inválidos';
     }
   }
