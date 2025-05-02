@@ -11,8 +11,11 @@
         placeholder="Nome"
         #nomeField="ngModel"
       />
-      <div *ngIf="nomeField.invalid && nomeField.touched" class="alert alert-danger">
-        Nome é obrigatório.        
+      <div
+        *ngIf="nomeField.invalid && nomeField.touched"
+        class="alert alert-danger"
+      >
+        Nome é obrigatório.
       </div>
     </div>
     <div class="mb-3">
@@ -25,7 +28,10 @@
         placeholder="Email"
         #emailField="ngModel"
       />
-      <div *ngIf="emailField.invalid && emailField.touched" class="alert alert-danger">
+      <div
+        *ngIf="emailField.invalid && emailField.touched"
+        class="alert alert-danger"
+      >
         <div *ngIf="emailField.errors?.['required']">Email é obrigatório.</div>
         <div *ngIf="emailField.errors?.['email']">Email inválido.</div>
       </div>
@@ -41,22 +47,27 @@
       />
     </div>
     <div class="mb-3">
-        <input
-          [(ngModel)]="confirmaSenha"
-          name="confirmarSenha"
-          required
-          type="password"
-          class="form-control"
-          placeholder="Confirmar Senha"
-        />
-      </div>
+      <input
+        [(ngModel)]="confirmaSenha"
+        name="confirmarSenha"
+        required
+        type="password"
+        class="form-control"
+        placeholder="Confirmar Senha"
+      />
+    </div>
 
-      <div *ngIf="erroSenha" class="alert alert-danger">
-        {{ erroSenha }}
-      </div>
-    <button class="btn btn-success" type="submit" [disabled]="form.invalid">Cadastrar</button>
+    <div *ngIf="erroSenha" class="alert alert-danger">
+      {{ erroSenha }}
+    </div>
+    <button class="btn btn-success" type="submit" [disabled]="form.invalid">
+      Cadastrar
+    </button>
   </form>
 
+  <button class="btn btn-danger" (click)="navigateToLogin()">
+    Voltar para o Login
+  </button>
   <div *ngIf="mensagem" class="mt-3 alert alert-info">
     {{ mensagem }}
   </div>

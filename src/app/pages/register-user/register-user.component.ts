@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User } from '../../shared/interfaces/user.interface';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-register-user',
@@ -19,7 +20,10 @@ export class RegisterUserComponent {
   mensagem = '';
   erroSenha = '';
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    public router: Router
+  ) {}
 
   cadastrar(form: NgForm) {
     this.erroSenha = '';
@@ -64,4 +68,9 @@ export class RegisterUserComponent {
       }
     });
   }
+
+  navigateToLogin() {
+    this.router.navigate(['/login']);
+  }
 }
+
