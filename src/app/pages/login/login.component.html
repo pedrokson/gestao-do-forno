@@ -1,53 +1,63 @@
-<div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card p-4 shadow-sm" style="max-width: 400px; width: 100%; background-color: lightgray;">
-      <form (ngSubmit)="login()">
-        <h2 class="text-center mb-4">Login</h2>
-        <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
-            {{ errorMessage }}
-          </div>
-        <div class="mb-3">
-          <input
-            type="email"
-            [(ngModel)]="email"
-            placeholder="Email"
-            class="form-control"
-            id="exampleInputEmail1"
-            name="email"
-            required
-          />
-        </div>
+<div class="container d-flex justify-content-center align-items-center vh-100" style="background: linear-gradient(to bottom, #f8f9fa, #e9ecef);">
   
-        <div class="input-group mb-3">
-          <input
-            [type]="passwordVisible ? 'text' : 'password'"
-            [(ngModel)]="password"
-            class="form-control"
-            placeholder="Senha"
-            id="exampleInputPassword1"
-            name="password"
-            required
-          />
-          <button
-            type="button"
-            (click)="togglePasswordVisibility()"
-            class="btn btn-outline-secondary"
-            aria-label="Mostrar ou ocultar senha"
-          >
-            {{ passwordVisible ? '🙈' : '👁️' }}
-          </button>
-        </div>
-  
-        <button style="width: 100%;" class="btn btn-primary" type="submit">
-          Entrar
-        </button>
-
-        <div class="text-center mt-3">
-         <span>
-            Não tem uma conta? 
-         </span>
-        
-          <a (click)="navigateToRegister()" class="text-decoration-none">Cadastre-se</a>
-        </div>
-      </form>
+  <div class="card p-4 shadow-lg" style="max-width: 400px; width: 100%; border-radius: 15px; background-color: white;">
+    <!-- Logo e Nome da Padaria -->
+    <div class="text-center mb-4">
+      <span class="material-symbols-outlined" style="font-size: 4rem; color: #dddd0d;">breakfast_dining</span>
+      <h1 class="mt-2" style="font-size: 1.8rem; font-weight: bold; color: #343a40;">Gestão do Forno</h1>
     </div>
+
+    <form (ngSubmit)="login()">
+      <h2 class="text-center mb-4" style="color: #495057;">Login</h2>
+      <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+          {{ errorMessage }}
+      </div>
+      <div class="mb-3">
+        <input
+          type="email"
+          [(ngModel)]="email"
+          placeholder="Email"
+          class="form-control"
+          id="exampleInputEmail1"
+          name="email"
+          required
+          style="border-radius: 10px;"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <input
+          [type]="passwordVisible ? 'text' : 'password'"
+          [(ngModel)]="password"
+          class="form-control"
+          placeholder="Senha"
+          id="exampleInputPassword1"
+          name="password"
+          required
+          style="border-radius: 10px 0 0 10px;"
+        />
+        <button
+          type="button"
+          (click)="togglePasswordVisibility()"
+          class="btn btn-outline-secondary"
+          aria-label="Mostrar ou ocultar senha"
+          style="border-radius: 0 10px 10px 0;"
+        >
+          {{ passwordVisible ? '🙈' : '👁️' }}
+        </button>
+      </div>
+
+      <button style="width: 100%; border-radius: 10px;" class="btn btn-primary btn-lg" type="submit">
+        Entrar
+      </button>
+
+      <div class="text-center mt-3">
+       <span style="color: #6c757d;">
+          Não tem uma conta? 
+       </span>
+      
+        <a (click)="navigateToRegister()" class="text-decoration-none" style="color: #007bff; font-weight: bold;">Cadastre-se</a>
+      </div>
+    </form>
   </div>
+</div>
