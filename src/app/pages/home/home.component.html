@@ -1,1 +1,60 @@
-<p>home works!</p>
+<div class="container mt-5">
+
+    <!-- Indicadores -->
+    <div class="row g-4 mb-4">
+      <div class="col-md-3">
+        <div class="card text-white shadow" style="background: linear-gradient(135deg, #007bff, #00c6ff); border-radius: 15px;">
+          <div class="card-body text-center">
+            <h6 class="card-subtitle mb-2 text-uppercase fw-bold">
+              <i class="bi bi-cart-check-fill me-1"></i> Vendas do Dia
+            </h6>
+            <p class="card-text display-4 fw-bold">{{ totalVendasHoje }}</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-3">
+        <div class="card text-white shadow" style="background: linear-gradient(135deg, #28a745, #85e085); border-radius: 15px;">
+          <div class="card-body text-center">
+            <h6 class="card-subtitle mb-2 text-uppercase fw-bold">
+              <i class="bi bi-currency-dollar me-1"></i> Faturamento Mensal
+            </h6>
+            <p class="card-text display-4 fw-bold">R$ {{ faturamentoMensal }}</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <div class="card shadow-sm border-0" style="border-radius: 15px;">
+          <div class="card-body">
+            <h6 class="card-subtitle mb-3 text-uppercase fw-bold">
+              <i class="bi bi-trophy-fill text-warning me-1"></i> Produtos Mais Vendidos
+            </h6>
+            <ul class="list-group list-group-flush">
+              <li *ngFor="let p of maisVendidos" class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">{{ p.nome }}</span>
+                <span class="badge bg-secondary rounded-pill">{{ p.total }} und</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Estoque Crítico -->
+    <div class="card shadow-sm border-0" style="border-radius: 15px;">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-3 text-uppercase fw-bold">
+          <i class="bi bi-exclamation-triangle-fill text-danger me-1"></i> Estoque Crítico
+        </h6>
+        <div *ngIf="estoqueCritico.length === 0" class="text-muted fst-italic text-center">Nenhum item em estoque crítico.</div>
+        <ul *ngIf="estoqueCritico.length > 0" class="list-group list-group-flush">
+          <li *ngFor="let item of estoqueCritico" class="list-group-item d-flex justify-content-between align-items-center">
+            <span class="fw-bold">{{ item.nome }}</span>
+            <span class="badge bg-danger rounded-pill">{{ item.estoque }} und</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+  </div>

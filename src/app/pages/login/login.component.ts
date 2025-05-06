@@ -26,9 +26,10 @@ export class LoginComponent {
     this.authService.login(this.email, this.password).subscribe({
       next: (res) => {
         if (res.token) {
-          console.log('Token recebido:', res.token); 
-          debugger
           localStorage.setItem('token', res.token);
+          const payLoadBase64 = res.token.split('.')[1];
+          const payload = JSON.parse(atob(payLoadBase64));
+          localStorage.setItem('userId', payload.id);
           this.router.navigate(['/']);
         } else {
           this.errorMessage = 'Email ou senha inválidos!';
