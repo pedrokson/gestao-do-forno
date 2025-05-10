@@ -93,4 +93,5 @@ export class SalesComponent implements OnInit {
     const produto = this.produtos.find((p) => p.id == produtoId);
     return produto ? produto.preco : 0;
   }
+  
 }
