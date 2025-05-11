@@ -128,9 +128,10 @@ export class ProductsComponent implements OnInit {
     const precoVenda = Number(this.precoVenda);
   
     // 🚨 Validação básica
-    if (custo <= 0 || margem < 0) {
+    if (custo <= 0) {
       this.precoSugerido = 0;
       this.lucroEstimado = 0;
+      this.margem = 0;
       return;
     }
   
@@ -139,10 +140,17 @@ export class ProductsComponent implements OnInit {
   
     // ✅ Se houver preço de venda informado, recalcular margem real e lucro estimado
     if (precoVenda > 0) {
-      this.margem = +(((precoVenda - custo) / custo) * 100).toFixed(2);
+      const margemCalculada = ((precoVenda - custo) / custo) * 100;
+  
+      // Permitir margens negativas
+      this.margem = +margemCalculada.toFixed(2);
       this.lucroEstimado = +(precoVenda - custo).toFixed(2);
+    } else if (precoVenda === 0) {
+      // Caso o preço de venda seja zero
+      this.margem = -100; // Margem negativa total
+      this.lucroEstimado = -custo; // Prejuízo total igual ao custo
     } else {
       this.lucroEstimado = +(this.precoSugerido - custo).toFixed(2);
     }
   }
-} 
+}
