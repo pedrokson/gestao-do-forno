@@ -1,0 +1,62 @@
+/* Gradientes modernos */
+.bg-blue {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    border-radius: 1rem;
+  }
+  
+  .bg-green {
+    background: linear-gradient(135deg, #11998e, #38ef7d);
+    border-radius: 1rem;
+  }
+  
+  /* Cartões de indicadores */
+  .indicador-card {
+    border: none;
+    border-radius: 1rem;
+    padding: 1.5rem 1.2rem;
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .indicador-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .indicador-icone {
+    font-size: 2rem;
+  }
+  
+  /* Cards padrão */
+  .card-box {
+    border-radius: 1rem;
+    border: none;
+    background-color: #ffffff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Lista de produtos */
+  .item-lista {
+    border-radius: 0.5rem;
+    margin-bottom: 0.4rem;
+    padding: 0.7rem 1rem;
+    background-color: #f8f9fa;
+  }
+  
+  /* Estoque crítico */
+  .estoque-item {
+    border-radius: 0.5rem;
+    background-color: #fff0f0;
+    border: 1px solid #f5c2c7;
+    padding: 0.7rem 1rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  /* Tipografia */
+  body {
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+  }
+  
+  .card h6, .card h2 {
+    margin-bottom: 0;
+  }
+  

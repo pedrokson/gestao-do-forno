@@ -88,13 +88,19 @@ export class ProductsComponent implements OnInit {
   }
 
   editProduto(produto: Produto) {
+    // Preenche os campos do formulário com os dados do produto selecionado
     this.nome = produto.nome;
-    this.preco = produto.preco;
     this.estoque = produto.estoque;
+    this.custoAtual = produto.custoAtual ?? 0;
+    this.custoMedio = produto.custoMedio ?? 0;
+    this.margem = produto.margem ?? 0;
+    this.precoVenda = produto.precoVenda ?? 0;
+    this.precoSugerido = produto.precoSugerido ?? 0;
+  
+    // Define o modo de edição
     this.edit = true;
-    this.produtoEdit = produto.id!;
+    this.produtoEdit = produto.id ?? null; // Armazena o ID do produto sendo editado
   }
-
   deleteProduto(produto: Produto) {
     if (confirm('Tem certeza que deseja excluir este produto?')) {
       if (produto.id != null) {
