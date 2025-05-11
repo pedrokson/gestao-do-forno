@@ -50,6 +50,20 @@ export class ProductsComponent implements OnInit {
   }
 
   addProduto() {
+    if (!this.nome.trim()) {
+      alert('Nome do produto é obrigatório!');
+      return;
+    }
+
+    if (this.precoVenda <= 0) {
+      alert('Preço do produto deve ser maior que zero!');
+      return;
+    }
+
+    if (this.estoque < 0) {
+      alert('Estoque do produto não pode ser negativo!');
+      return;
+    }
     const produto: Produto = {
       nome: this.nome,
       preco: this.precoVenda,
@@ -101,6 +115,11 @@ export class ProductsComponent implements OnInit {
     this.estoque = 0;
     this.edit = false;
     this.produtoEdit = null;
+    this.custoAtual = 0;
+    this.precoSugerido = 0;
+    this.custoMedio = 0;
+    this.margem = 0;
+    this.precoVenda = 0;
   }
 
   calcularValores() {

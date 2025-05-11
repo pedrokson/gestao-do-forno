@@ -54,32 +54,45 @@ export class SalesComponent implements OnInit {
     });
   }
   registrarVenda() {
-    if (!this.produto_id || this.quantidade <= 0 || !this.data) {
+    this.mensagem = '';
+  
+    // Validação dos campos obrigatórios
+    if (!this.produto_id || this.quantidade <= 0 || !this.data || !this.vendedor_id) {
       this.mensagem = 'Preencha todos os campos corretamente.';
       return;
     }
-    
+  
     const produtoSelecionado = this.produtos.find(p => p.id === Number(this.produto_id));
-    
+  
     if (!produtoSelecionado) {
       this.mensagem = 'Produto não encontrado.';
       return;
     }
-    const valorTotal = this.quantidade * produtoSelecionado.preco; // Supondo que o produto selecionado tenha uma propriedade 'preco'
-    
-    const sales: Sale = {
+  
+    const valorTotal = this.quantidade * produtoSelecionado.preco;
+  
+    const sale: Sale = {
       produtoId: this.produto_id,
       quantidade: this.quantidade,
       dataVenda: this.data,
       valorTotal: valorTotal,
-      clienteId: this.vendedor_id! // Adicionando o clienteId aqui, com valor padrão 0 se for null
+      clienteId: this.vendedor_id
     };
-
-    this.salesService.create(sales).subscribe(() => {
-      this.mensagem = 'Venda registrada com sucesso!';
-      this.quantidade = 1;
-      this.data = new Date().toISOString().slice(0, 10);
-      this.carregarVendas();
+  
+    this.salesService.create(sale).subscribe({
+      next: () => {
+        this.mensagem = '✅ Venda registrada com sucesso!';
+        this.quantidade = 1;
+        this.data = new Date().toISOString().slice(0, 10);
+        this.carregarVendas();
+      },
+      error: (err) => {
+        if (err.status === 400 && err.error?.erro) {
+          this.mensagem = `⚠️ ${err.error.erro};`
+        } else {
+          this.mensagem = 'Erro ao registrar a venda. Tente novamente.';
+        }
+      }
     });
   }
 
