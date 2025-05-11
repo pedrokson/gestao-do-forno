@@ -22,23 +22,23 @@ export class AppComponent {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
-
+  
   navigateToHome() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']); // Altere para a rota desejada
   }
-
+  
   navigateToDashboard() {
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/']); // Agora leva para a tela inicial
   }
-
+  
   navigateToProducts() {
     this.router.navigate(['/products']);
   }
-
+  
   navigateToSales() {
     this.router.navigate(['/sales']);
   }
-
+  
   navigateToReport() {
     this.router.navigate(['/report']);
   }

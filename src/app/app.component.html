@@ -23,7 +23,17 @@
         </span>
       </button>
 
-      <!-- Cabeçalho -->
+      <!-- Botão para o Dashboard -->
+      <a
+        (click)="navigateToDashboard()"
+        class="list-group-item list-group-item-action list-group-item-light d-flex align-items-center gap-2 px-3 py-3"
+        style="font-size: 1rem; font-weight: bold; cursor: pointer;"
+      >
+        <span class="material-icons" style="font-size: 1.5rem;">dashboard</span>
+        <span>Dashboard</span>
+      </a>
+
+      <!-- Botão para Gestão do Forno -->
       <div
         (click)="navigateToHome()"
         class="sidebar-heading bg-warning text-dark d-flex align-items-center gap-2 px-3 py-3 shadow-sm"
@@ -33,41 +43,35 @@
         <span>Gestão do Forno</span>
       </div>
 
-      <!-- Menu lateral -->
-      <div class="list-group list-group-flush">
-        <a
-          (click)="navigateToDashboard()"
-          class="list-group-item list-group-item-action list-group-item-light d-flex align-items-center gap-2 px-3 py-3"
-          style="font-size: 1rem; font-weight: bold; cursor: pointer;"
-        >
-          <span class="material-icons" style="font-size: 1.5rem;">dashboard</span>
-          <span>Dashboard</span>
-        </a>
-        <a
-          (click)="navigateToProducts()"
-          class="list-group-item list-group-item-action list-group-item-light d-flex align-items-center gap-2 px-3 py-3"
-          style="font-size: 1rem; font-weight: bold; cursor: pointer;"
-        >
-          <span class="material-icons" style="font-size: 1.5rem;">inventory_2</span>
-          <span>Produtos</span>
-        </a>
-        <a
-          (click)="navigateToSales()"
-          class="list-group-item list-group-item-action list-group-item-light d-flex align-items-center gap-2 px-3 py-3"
-          style="font-size: 1rem; font-weight: bold; cursor: pointer;"
-        >
-          <span class="material-icons" style="font-size: 1.5rem;">point_of_sale</span>
-          <span>Vendas</span>
-        </a>
-        <a
-          (click)="navigateToReport()"
-          class="list-group-item list-group-item-action list-group-item-light d-flex align-items-center gap-2 px-3 py-3"
-          style="font-size: 1rem; font-weight: bold; cursor: pointer;"
-        >
-          <span class="material-icons" style="font-size: 1.5rem;">bar_chart</span>
-          <span>Relatórios</span>
-        </a>
-      </div>
+      <!-- Botão para Produtos -->
+      <a
+        (click)="navigateToProducts()"
+        class="list-group-item list-group-item-action list-group-item-light d-flex align-items-center gap-2 px-3 py-3"
+        style="font-size: 1rem; font-weight: bold; cursor: pointer;"
+      >
+        <span class="material-icons" style="font-size: 1.5rem;">inventory_2</span>
+        <span>Produtos</span>
+      </a>
+
+      <!-- Botão para Vendas -->
+      <a
+        (click)="navigateToSales()"
+        class="list-group-item list-group-item-action list-group-item-light d-flex align-items-center gap-2 px-3 py-3"
+        style="font-size: 1rem; font-weight: bold; cursor: pointer;"
+      >
+        <span class="material-icons" style="font-size: 1.5rem;">point_of_sale</span>
+        <span>Vendas</span>
+      </a>
+
+      <!-- Botão para Relatórios -->
+      <a
+        (click)="navigateToReport()"
+        class="list-group-item list-group-item-action list-group-item-light d-flex align-items-center gap-2 px-3 py-3"
+        style="font-size: 1rem; font-weight: bold; cursor: pointer;"
+      >
+        <span class="material-icons" style="font-size: 1.5rem;">bar_chart</span>
+        <span>Relatórios</span>
+      </a>
     </div>
 
     <!-- Conteúdo principal -->

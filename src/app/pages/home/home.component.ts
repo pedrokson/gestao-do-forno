@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import { Produto } from '../../services/produto.service';
 import { HomeService } from '../../services/home.service';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-
   totalVendasHoje = 0;
   faturamentoMensal = 0;
   maisVendidos: { nome: string; total: number }[] = [];
@@ -19,9 +18,17 @@ export class HomeComponent {
   constructor(private dashboardService: HomeService) {}
 
   ngOnInit(): void {
-    this.dashboardService.getTotalVendasDia().subscribe(res => this.totalVendasHoje = res.total);
-    this.dashboardService.getFaturamentoMensal().subscribe(res => this.faturamentoMensal = res.total);
-    this.dashboardService.getMaisVendidos().subscribe(res => this.maisVendidos = res);
-    this.dashboardService.getEstoqueCritico().subscribe(res => this.estoqueCritico = res);
+    this.dashboardService
+      .getTotalVendasDia()
+      .subscribe((res) => (this.totalVendasHoje = res.total));
+    this.dashboardService
+      .getFaturamentoMensal()
+      .subscribe((res) => (this.faturamentoMensal = res.total));
+    this.dashboardService
+      .getMaisVendidos()
+      .subscribe((res) => (this.maisVendidos = res));
+    this.dashboardService
+      .getEstoqueCritico()
+      .subscribe((res) => (this.estoqueCritico = res));
   }
 }

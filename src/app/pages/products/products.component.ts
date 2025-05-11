@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Produto, ProdutoService } from '../../services/produto.service';
+import { ProdutoService } from '../../services/produto.service';
+import { Produto } from '../../shared/interfaces/produto.inteface';
 
 @Component({
   selector: 'app-products',
@@ -16,6 +17,13 @@ export class ProductsComponent implements OnInit {
   nome = '';
   preco = 0;
   estoque = 0;
+  custoAtual = 0;
+  precoSugerido = 0;
+  custoMedio = 0;
+  margem = 0; // Margem de lucro em porcentagem
+  precoVenda = 0;
+  lucroEstimado = 0; // Adicione essa variável na sua classe
+
 
   edit = false;
   produtoEdit: number | null = null;
@@ -27,13 +35,13 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger
+    debugger;
     console.log('ngOnInit chamado');
     this.loadProdutos();
   }
 
   loadProdutos() {
-    debugger
+    debugger;
     this.produtoService.getAll().subscribe((res) => {
       console.log('Recebido da API:', res); // 👈 veja no console
       this.produtos = res;
@@ -44,8 +52,13 @@ export class ProductsComponent implements OnInit {
   addProduto() {
     const produto: Produto = {
       nome: this.nome,
-      preco: this.preco,
+      preco: this.precoVenda,
       estoque: this.estoque,
+      custoAtual: this.custoAtual,
+      precoSugerido: this.precoSugerido,
+      custoMedio: this.custoMedio,
+      margem: this.margem,
+      precoVenda: this.precoVenda,
     };
     if (this.edit && this.produtoEdit !== null) {
       this.produtoService.update(this.produtoEdit, produto).subscribe((res) => {
@@ -70,7 +83,8 @@ export class ProductsComponent implements OnInit {
 
   deleteProduto(produto: Produto) {
     if (confirm('Tem certeza que deseja excluir este produto?')) {
-      if (produto.id != null) { // cobre null e undefined
+      if (produto.id != null) {
+        // cobre null e undefined
         this.produtoService.delete(produto.id).subscribe(() => {
           this.loadProdutos();
           if (this.produtoEdit === produto.id) {
@@ -88,4 +102,28 @@ export class ProductsComponent implements OnInit {
     this.edit = false;
     this.produtoEdit = null;
   }
-}
+
+  calcularValores() {
+    const custo = Number(this.custoAtual);
+    const margem = Number(this.margem);
+    const precoVenda = Number(this.precoVenda);
+  
+    // 🚨 Validação básica
+    if (custo <= 0 || margem < 0) {
+      this.precoSugerido = 0;
+      this.lucroEstimado = 0;
+      return;
+    }
+  
+    // ✅ Calcular preço sugerido com base na margem sobre o custo (markup)
+    this.precoSugerido = +(custo * (1 + margem / 100)).toFixed(2);
+  
+    // ✅ Se houver preço de venda informado, recalcular margem real e lucro estimado
+    if (precoVenda > 0) {
+      this.margem = +(((precoVenda - custo) / custo) * 100).toFixed(2);
+      this.lucroEstimado = +(precoVenda - custo).toFixed(2);
+    } else {
+      this.lucroEstimado = +(this.precoSugerido - custo).toFixed(2);
+    }
+  }
+} 
