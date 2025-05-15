@@ -1,19 +1,19 @@
-<div class="container mt-4">
+<div class="container mt-5">
     <!-- Card de Cadastro -->
-    <div class="card shadow-lg p-4" style="border-radius: 15px; background-color: #f8f9fa">
-      <h2 class="text-center mb-4" style="color: #343a40; font-weight: bold">
+    <div class="card shadow p-5" style="border-radius: 20px; background-color: #fdfdfd">
+      <h2 class="text-center mb-4" style="color: #2c3e50; font-weight: 700; text-shadow: 1px 1px 2px #ccc">
         Cadastro de Produtos
       </h2>
   
-      <form (ngSubmit)="addProduto()" class="mb-4">
-        <div class="row g-3">
+      <form (ngSubmit)="addProduto()">
+        <div class="row g-4">
           <div class="col-md-4">
             <label class="form-label">Nome do Produto</label>
             <input
               type="text"
               [(ngModel)]="nome"
               name="nome"
-              class="form-control"
+              class="form-control shadow-sm"
               placeholder="Digite o nome do produto"
               required
             />
@@ -25,7 +25,7 @@
               type="number"
               [(ngModel)]="estoque"
               name="estoque"
-              class="form-control"
+              class="form-control shadow-sm"
               placeholder="Qtd. em estoque"
               required
             />
@@ -37,7 +37,7 @@
               type="number"
               [(ngModel)]="custoAtual"
               name="custoAtual"
-              class="form-control"
+              class="form-control shadow-sm"
               placeholder="Custo atual"
               (input)="calcularValores()"
               required
@@ -50,7 +50,7 @@
               type="number"
               [(ngModel)]="custoMedio"
               name="custoMedio"
-              class="form-control"
+              class="form-control shadow-sm"
               placeholder="Custo médio"
             />
           </div>
@@ -61,38 +61,38 @@
               type="number"
               [(ngModel)]="margem"
               name="margem"
-              class="form-control"
+              class="form-control shadow-sm"
               placeholder="Margem (%)"
               (input)="calcularValores()"
             />
           </div>
   
-          <div class="col-md-2">
+          <div class="col-md-3">
             <label class="form-label">Preço Sugerido</label>
             <input
               type="text"
               [value]="precoSugerido | number : '1.2-2'"
-              class="form-control"
+              class="form-control bg-light text-success shadow-sm fw-bold"
               readonly
             />
           </div>
   
-          <div class="col-md-2">
+          <div class="col-md-3">
             <label class="form-label">Preço Venda</label>
             <input
               type="number"
               [(ngModel)]="precoVenda"
               name="precoVenda"
-              class="form-control"
+              class="form-control shadow-sm"
               placeholder="Preço de venda"
               (input)="calcularValores()"
               required
             />
           </div>
   
-          <div class="col-md-2 d-flex align-items-end">
-            <button type="submit" class="btn btn-primary w-100">
-              {{ edit ? 'Atualizar' : 'Adicionar' }}
+          <div class="col-md-3 d-flex align-items-end">
+            <button type="submit" class="btn btn-success w-100 fw-bold shadow-sm">
+              <i class="bi bi-plus-circle me-1"></i> {{ edit ? 'Atualizar' : 'Adicionar' }}
             </button>
           </div>
         </div>
@@ -100,15 +100,12 @@
     </div>
   
     <!-- Card de Lista de Produtos -->
-    <div class="card shadow-lg mt-4 p-4" style="border-radius: 15px; background-color: #ffffff">
-      <h4 class="text-center mb-4" style="color: #343a40; font-weight: bold">
+    <div class="card shadow mt-5 p-4" style="border-radius: 20px; background-color: #fff">
+      <h4 class="text-center mb-4" style="color: #2c3e50; font-weight: 700; text-shadow: 1px 1px 2px #ccc">
         Lista de Produtos
       </h4>
   
-      <table
-        class="table table-hover table-bordered table-striped"
-        *ngIf="produtos.length > 0; else nenhumProduto"
-      >
+      <table class="table table-bordered table-hover align-middle shadow-sm" *ngIf="produtos.length > 0; else nenhumProduto">
         <thead class="table-dark text-center">
           <tr>
             <th>Nome</th>
@@ -118,25 +115,25 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let p of produtos" class="align-middle">
-            <td>{{ p.nome }}</td>
-            <td class="text-success fw-bold">{{ p.preco | currency : "BRL" }}</td>
+          <tr *ngFor="let p of produtos">
+            <td class="fw-semibold">{{ p.nome }}</td>
+            <td class="text-success fw-bold text-center">{{ p.preco | currency : "BRL" }}</td>
             <td class="text-center">{{ p.estoque }}</td>
             <td class="text-center">
               <div class="d-flex justify-content-center gap-2">
                 <button
-                  class="btn btn-warning btn-sm"
+                  class="btn btn-outline-warning btn-sm shadow-sm"
                   (click)="editProduto(p)"
-                  style="width: 90px; font-weight: bold"
+                  style="width: 90px"
                 >
-                  <i class="bi bi-pencil"></i> Editar
+                  <i class="bi bi-pencil me-1"></i> Editar
                 </button>
                 <button
-                  class="btn btn-danger btn-sm"
+                  class="btn btn-outline-danger btn-sm shadow-sm"
                   (click)="deleteProduto(p)"
-                  style="width: 90px; font-weight: bold"
+                  style="width: 90px"
                 >
-                  <i class="bi bi-trash"></i> Excluir
+                  <i class="bi bi-trash me-1"></i> Excluir
                 </button>
               </div>
             </td>
@@ -145,9 +142,10 @@
       </table>
   
       <ng-template #nenhumProduto>
-        <div class="alert alert-info text-center" style="font-weight: bold">
+        <div class="alert alert-info text-center fw-bold">
           Nenhum produto cadastrado.
         </div>
       </ng-template>
     </div>
   </div>
+  
