@@ -14,6 +14,10 @@ export class SalesService {
     private http: HttpClient
   ) { }
 
+  getSales(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+
   getAll(): Observable<Sale[]> {
     return this.http.get<Sale[]>(this.apiUrl);
   }

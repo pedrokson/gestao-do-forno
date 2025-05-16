@@ -1,0 +1,87 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Relatórios</h2>
+  
+    <!-- Filtros -->
+    <div class="card p-3 mb-4 shadow-sm">
+      <h5 class="fw-bold mb-3">Filtros</h5>
+      <form (ngSubmit)="filtrarRelatorios()">
+        <div class="row g-3 align-items-end">
+          <div class="col-md-4">
+            <label class="form-label">Data Inicial</label>
+            <input
+              type="date"
+              [(ngModel)]="dataInicial"
+              name="dataInicial"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Data Final</label>
+            <input
+              type="date"
+              [(ngModel)]="dataFinal"
+              name="dataFinal"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="col-md-4 d-flex gap-2">
+            <button type="submit" class="btn btn-primary w-100">Filtrar</button>
+            <button type="button" (click)="exportarCSV()" class="btn btn-success">Exportar CSV</button>
+            <button type="button" (click)="imprimir()" class="btn btn-secondary">Imprimir</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  
+    <!-- Tabela -->
+    <div class="card p-3 shadow-sm mb-4">
+      <h6 class="fw-bold mb-3">Detalhes das Vendas</h6>
+      <table
+        *ngIf="relatorios.length > 0; else nenhumRelatorio"
+        class="table table-striped table-bordered table-hover align-middle text-center"
+      >
+        <thead class="table-dark">
+          <tr>
+            <th>Data</th>
+            <th>Produto</th>
+            <th>Categoria</th>
+            <th>Quantidade</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let relatorio of relatorios">
+            <td>{{ relatorio.data | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ relatorio.produto }}</td>
+            <td>{{ relatorio.categoria }}</td>
+            <td>{{ relatorio.quantidade }}</td>
+            <td class="text-success fw-bold">{{ relatorio.total | currency: 'BRL' }}</td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <ng-template #nenhumRelatorio>
+        <div class="alert alert-info text-center fw-bold">
+          Nenhum relatório encontrado para o período selecionado.
+        </div>
+      </ng-template>
+    </div>
+  
+    <!-- Gráficos -->
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card p-3 shadow-sm">
+          <h6 class="fw-bold mb-3 text-center">Distribuição de Vendas (R$)</h6>
+          <canvas id="grafico1"></canvas>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card p-3 shadow-sm">
+          <h6 class="fw-bold mb-3 text-center">Quantidade por Produto</h6>
+          <canvas id="grafico2"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>

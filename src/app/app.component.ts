@@ -40,7 +40,7 @@ export class AppComponent {
   }
   
   navigateToReport() {
-    this.router.navigate(['/report']);
+    this.router.navigate(['/reports']);
   }
 
   toggleSidebar() {
