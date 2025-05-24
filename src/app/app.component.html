@@ -9,12 +9,12 @@
       [class.collapsed]="isSidebarCollapsed"
       class="bg-light border-end shadow-sm"
       id="sidebar-wrapper"
-      style="min-height: 100vh;"
+      style="min-height: 100vh"
     >
       <!-- Botão de colapso dentro da sidebar -->
       <button
         class="btn btn-light position-absolute top-50 end-0 translate-middle-y p-1"
-        style="z-index: 1000; border-radius: 50%;"
+        style="z-index: 1000; border-radius: 50%"
         (click)="toggleSidebar()"
         aria-label="Colapsar sidebar"
       >
@@ -23,24 +23,24 @@
         </span>
       </button>
 
-      
-
       <!-- Botão para Gestão do Forno -->
       <div
         (click)="navigateToHome()"
         class="sidebar-heading bg-warning text-dark d-flex align-items-center gap-2 px-3 py-3 shadow-sm"
-        style="cursor: pointer; font-size: 1.2rem; font-weight: bold;"
+        style="cursor: pointer; font-size: 1.2rem; font-weight: bold"
       >
-        <span class="material-symbols-outlined" style="font-size: 2rem;">breakfast_dining</span>
+        <span class="material-symbols-outlined" style="font-size: 2rem"
+          >breakfast_dining</span
+        >
         <span>Gestão do Forno</span>
       </div>
       <!-- Botão para o Dashboard -->
       <a
         (click)="navigateToDashboard()"
         class="list-group-item list-group-item-action list-group-item-light d-flex align-items-center gap-2 px-3 py-3"
-        style="font-size: 1rem; font-weight: bold; cursor: pointer;"
+        style="font-size: 1rem; font-weight: bold; cursor: pointer"
       >
-        <span class="material-icons" style="font-size: 1.5rem;">dashboard</span>
+        <span class="material-icons" style="font-size: 1.5rem">dashboard</span>
         <span>Dashboard</span>
       </a>
 
@@ -48,9 +48,11 @@
       <a
         (click)="navigateToProducts()"
         class="list-group-item list-group-item-action list-group-item-light d-flex align-items-center gap-2 px-3 py-3"
-        style="font-size: 1rem; font-weight: bold; cursor: pointer;"
+        style="font-size: 1rem; font-weight: bold; cursor: pointer"
       >
-        <span class="material-icons" style="font-size: 1.5rem;">inventory_2</span>
+        <span class="material-icons" style="font-size: 1.5rem"
+          >inventory_2</span
+        >
         <span>Produtos</span>
       </a>
 
@@ -58,9 +60,11 @@
       <a
         (click)="navigateToSales()"
         class="list-group-item list-group-item-action list-group-item-light d-flex align-items-center gap-2 px-3 py-3"
-        style="font-size: 1rem; font-weight: bold; cursor: pointer;"
+        style="font-size: 1rem; font-weight: bold; cursor: pointer"
       >
-        <span class="material-icons" style="font-size: 1.5rem;">point_of_sale</span>
+        <span class="material-icons" style="font-size: 1.5rem"
+          >point_of_sale</span
+        >
         <span>Vendas</span>
       </a>
 
@@ -68,19 +72,33 @@
       <a
         (click)="navigateToReport()"
         class="list-group-item list-group-item-action list-group-item-light d-flex align-items-center gap-2 px-3 py-3"
-        style="font-size: 1rem; font-weight: bold; cursor: pointer;"
+        style="font-size: 1rem; font-weight: bold; cursor: pointer"
       >
-        <span class="material-icons" style="font-size: 1.5rem;">bar_chart</span>
+        <span class="material-icons" style="font-size: 1.5rem">bar_chart</span>
         <span>Relatórios</span>
+      </a>
+      <a
+        (click)="navigateToClientes()"
+        class="list-group-item list-group-item-action list-group-item-light d-flex align-items-center gap-2 px-3 py-3"
+        style="font-size: 1rem; font-weight: bold; cursor: pointer"
+      >
+        <span class="material-icons" style="font-size: 1.5rem">people</span>
+        <span>Clientes</span>
       </a>
     </div>
 
     <!-- Conteúdo principal -->
     <div id="page-content-wrapper">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom shadow-sm">
+      <nav
+        class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom shadow-sm"
+      >
         <div class="container-fluid">
           <div class="d-flex ms-auto">
-            <button class="btn btn-outline-light" (click)="logout()" style="font-weight: bold;">
+            <button
+              class="btn btn-outline-light"
+              (click)="logout()"
+              style="font-weight: bold"
+            >
               Sair
             </button>
           </div>

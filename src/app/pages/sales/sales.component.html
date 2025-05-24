@@ -91,6 +91,7 @@
             <option value="Pix">Pix</option>
             <option value="Cartão de Débito">Cartão de Débito</option>
             <option value="Cartão de Crédito">Cartão de Crédito</option>
+            <option value="Fiado">Fiado</option>
           </select>
         </div>
 
@@ -129,7 +130,7 @@
           <th>Valor Total</th>
           <th>Data</th>
           <th>Forma de Pagamento</th>
-          <th>Fiado</th>
+          <th>Cliente</th>
         </tr>
       </thead>
       <tbody>
@@ -140,10 +141,7 @@
           <td class="text-success fw-bold">{{ v.valorTotal | currency : "BRL" }}</td>
           <td>{{ v.dataVenda | date : "dd/MM/yyyy" }}</td>
           <td>{{ v.formaPagamento }}</td>
-          <td>
-            <span *ngIf="v.fiado">Fiado</span>
-            <span *ngIf="!v.fiado">À vista</span>
-          </td>
+          <td>{{ getNomeCliente(v.clienteId) }}</td>
         </tr>
       </tbody>
     </table>

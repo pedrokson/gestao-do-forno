@@ -1,15 +1,18 @@
-.component.html -->
 <div class="container mt-5">
   <div class="card p-4 mb-4">
     <h3>Cadastrar Cliente</h3>
     <form (ngSubmit)="cadastrarCliente()">
       <div class="mb-3">
         <label class="form-label">Nome</label>
-        <input [(ngModel)]="nome" name="nome" class="form-control" required>
+        <input [(ngModel)]="cliente.nome" name="nome" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">E-mail</label>
+        <input [(ngModel)]="cliente.email" name="email" class="form-control" required type="email">
       </div>
       <div class="mb-3">
         <label class="form-label">Telefone</label>
-        <input [(ngModel)]="telefone" name="telefone" class="form-control">
+        <input [(ngModel)]="cliente.telefone" name="telefone" class="form-control">
       </div>
       <button class="btn btn-primary" type="submit">Cadastrar</button>
     </form>
@@ -22,13 +25,19 @@
       <thead>
         <tr>
           <th>Nome</th>
+          <th>E-mail</th>
           <th>Telefone</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let c of clientes">
           <td>{{ c.nome }}</td>
+          <td>{{ c.email }}</td>
           <td>{{ c.telefone }}</td>
+          <td>
+            <button class="btn btn-sm btn-danger" (click)="excluirCliente(c.id)">Excluir</button>
+          </td>
         </tr>
       </tbody>
     </table>

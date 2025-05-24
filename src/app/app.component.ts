@@ -42,6 +42,9 @@ export class AppComponent {
   navigateToReport() {
     this.router.navigate(['/reports']);
   }
+  navigateToClientes() {
+  this.router.navigate(['/clientes']);
+}
 
   toggleSidebar() {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;

@@ -1,5 +1,4 @@
 <div class="container mt-5">
-
   <!-- Indicadores -->
   <div class="row g-4 mb-4">
     <div class="col-md-3">
@@ -21,7 +20,9 @@
             <i class="bi bi-currency-dollar"></i>
           </div>
           <h6 class="text-uppercase fw-semibold small">Faturamento Mensal</h6>
-          <h2 class="fw-bold mb-0">R$ {{ faturamentoMensal }}</h2>
+          <h2 class="fw-bold mb-0">
+            R$ {{ faturamentoMensal | number : "1.2-2" }}
+          </h2>
         </div>
       </div>
     </div>
@@ -30,12 +31,18 @@
       <div class="card card-box">
         <div class="card-body">
           <h6 class="text-uppercase fw-bold mb-3">
-            <i class="bi bi-trophy-fill text-warning me-1"></i> Produtos Mais Vendidos
+            <i class="bi bi-trophy-fill text-warning me-1"></i> Produtos Mais
+            Vendidos
           </h6>
           <ul class="list-group list-group-flush">
-            <li *ngFor="let p of maisVendidos" class="list-group-item d-flex justify-content-between align-items-center item-lista">
+            <li
+              *ngFor="let p of maisVendidos"
+              class="list-group-item d-flex justify-content-between align-items-center item-lista"
+            >
               <span class="fw-medium">{{ p.nome }}</span>
-              <span class="badge bg-secondary rounded-pill">{{ p.total }} und</span>
+              <span class="badge bg-secondary rounded-pill"
+                >{{ p.total }} und</span
+              >
             </li>
           </ul>
         </div>
@@ -47,16 +54,26 @@
   <div class="card card-box border-start border-4 border-danger">
     <div class="card-body">
       <h6 class="text-uppercase fw-bold mb-3">
-        <i class="bi bi-exclamation-triangle-fill text-danger me-1"></i> Estoque Crítico
+        <i class="bi bi-exclamation-triangle-fill text-danger me-1"></i> Estoque
+        Crítico
       </h6>
-      <div *ngIf="estoqueCritico.length === 0" class="text-muted fst-italic text-center">Nenhum item em estoque crítico.</div>
+      <div
+        *ngIf="estoqueCritico.length === 0"
+        class="text-muted fst-italic text-center"
+      >
+        Nenhum item em estoque crítico.
+      </div>
       <ul *ngIf="estoqueCritico.length > 0" class="list-group list-group-flush">
-        <li *ngFor="let item of estoqueCritico" class="list-group-item d-flex justify-content-between align-items-center estoque-item">
+        <li
+          *ngFor="let item of estoqueCritico"
+          class="list-group-item d-flex justify-content-between align-items-center estoque-item"
+        >
           <span class="fw-medium">{{ item.nome }}</span>
-          <span class="badge bg-danger rounded-pill">{{ item.estoque }} und</span>
+          <span class="badge bg-danger rounded-pill"
+            >{{ item.estoque }} und</span
+          >
         </li>
       </ul>
     </div>
   </div>
-
 </div>

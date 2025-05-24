@@ -1,20 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { Cliente, ClienteService } from '../../services/cliente.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ClienteService } from '../../services/cliente.service';
-
 @Component({
   selector: 'app-clientes',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './clientes.component.html',
-  styleUrls: ['./clientes.component.scss'],
+  imports : [CommonModule, FormsModule],
+  templateUrl: './clientes.component.html'
 })
 export class ClientesComponent implements OnInit {
-  clientes: any[] = [];
-  nome: string = '';
-  telefone: string = '';
-  mensagem: string = '';
+  cliente: Cliente = { nome: '', email: '', telefone: '' };
+  clientes: Cliente[] = [];
+  mensagem = '';
 
   constructor(private clienteService: ClienteService) {}
 
@@ -22,23 +18,39 @@ export class ClientesComponent implements OnInit {
     this.carregarClientes();
   }
 
-  carregarClientes() {
-    this.clienteService.getAll().subscribe((res: any[]) => this.clientes = res);
+  carregarClientes(): void {
+    this.clienteService.listar().subscribe({
+      next: (dados) => this.clientes = dados,
+      error: () => this.mensagem = 'Erro ao carregar clientes.'
+    });
   }
 
-  cadastrarCliente() {
-    if (!this.nome) {
-      this.mensagem = 'Preencha o nome!';
+  cadastrarCliente(): void {
+    if (!this.cliente.nome || !this.cliente.email || !this.cliente.telefone) {
+      this.mensagem = 'Todos os campos são obrigatórios.';
       return;
     }
-    this.clienteService.create({ nome: this.nome, telefone: this.telefone }).subscribe({
+
+    this.clienteService.criar(this.cliente).subscribe({
       next: () => {
-        this.mensagem = 'Cliente cadastrado!';
-        this.nome = '';
-        this.telefone = '';
+        this.mensagem = 'Cliente cadastrado com sucesso!';
+        this.cliente = { nome: '', email: '', telefone: '' };
         this.carregarClientes();
       },
-      error: () => this.mensagem = 'Erro ao cadastrar cliente.'
+      error: (err) => {
+        this.mensagem = 'Erro ao cadastrar: ' + err.error?.erro || err.message;
+      }
     });
+  }
+
+  excluirCliente(id?: number): void {
+    if (!id) return;
+
+    if (confirm('Tem certeza que deseja excluir este cliente?')) {
+      this.clienteService.remover(id).subscribe({
+        next: () => this.carregarClientes(),
+        error: () => this.mensagem = 'Erro ao excluir cliente.'
+      });
+    }
   }
 }

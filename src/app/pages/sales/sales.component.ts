@@ -23,6 +23,7 @@ export class SalesComponent implements OnInit {
   vendas: Sale[] = [];
   usuarios: User[] = [];
 
+
   produto_id: number | null = null;
   vendedor_id: number | null = null;
   quantidade: number = 1;
@@ -46,7 +47,7 @@ export class SalesComponent implements OnInit {
   }
 
   carregarClientes() {
-    this.clienteService.getAll().subscribe((res: any[]) => (this.clientes = res));
+    this.clienteService.listar().subscribe((res: any[]) => (this.clientes = res));
   }
 
   carregarProdutos() {
@@ -133,5 +134,10 @@ export class SalesComponent implements OnInit {
   getPrecoProduto(produtoId: number): number {
     const produto = this.produtos.find((p) => p.id == produtoId);
     return produto ? produto.preco : 0;
+  }
+  
+  getNomeCliente(clienteId: number): string {
+    const cliente = this.clientes.find((c) => c.id == clienteId);
+    return cliente ? cliente.nome : 'Cliente não encontrado';
   }
 }
