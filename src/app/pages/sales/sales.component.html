@@ -7,7 +7,7 @@
 
     <form (ngSubmit)="registrarVenda()">
       <div class="row g-4">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <label for="produto" class="form-label fw-bold">Produto</label>
           <select
             [(ngModel)]="produto_id"
@@ -21,7 +21,7 @@
           </select>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-4">
           <label for="vendedor" class="form-label fw-bold">Vendedor</label>
           <select
             [(ngModel)]="vendedor_id"
@@ -34,10 +34,24 @@
             <option *ngFor="let u of usuarios" [value]="u.id">{{ u.nome }}</option>
           </select>
         </div>
+
+        <div class="col-md-4">
+          <label for="clienteId" class="form-label fw-bold">Cliente</label>
+          <select
+            [(ngModel)]="clienteId"
+            name="clienteId"
+            id="clienteId"
+            class="form-select shadow-sm"
+            required
+          >
+            <option value="" disabled [selected]="!clienteId">Selecione um cliente</option>
+            <option *ngFor="let c of clientes" [value]="c.id">{{ c.nome }}</option>
+          </select>
+        </div>
       </div>
 
       <div class="row g-4 mt-1">
-        <div class="col-md-4">
+        <div class="col-md-2">
           <label for="quantidade" class="form-label fw-bold">Quantidade</label>
           <input
             [(ngModel)]="quantidade"
@@ -51,7 +65,7 @@
           />
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-2">
           <label for="data" class="form-label fw-bold">Data</label>
           <input
             [(ngModel)]="data"
@@ -63,7 +77,31 @@
           />
         </div>
 
-        <div class="col-md-4 d-flex align-items-end">
+        <div class="col-md-3">
+          <label for="formaPagamento" class="form-label fw-bold">Forma de Pagamento</label>
+          <select
+            [(ngModel)]="formaPagamento"
+            name="formaPagamento"
+            id="formaPagamento"
+            class="form-select shadow-sm"
+            required
+          >
+            <option value="" disabled>Selecione</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Pix">Pix</option>
+            <option value="Cartão de Débito">Cartão de Débito</option>
+            <option value="Cartão de Crédito">Cartão de Crédito</option>
+          </select>
+        </div>
+
+        <div class="col-md-2 d-flex align-items-end">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="fiado" name="fiado" id="fiado">
+            <label class="form-check-label" for="fiado">Fiado</label>
+          </div>
+        </div>
+
+        <div class="col-md-3 d-flex align-items-end">
           <button class="btn btn-success btn-lg w-100 shadow-sm" type="submit" style="border-radius: 10px">
             <i class="bi bi-cart-plus me-1"></i> Registrar
           </button>
@@ -90,6 +128,8 @@
           <th>Valor Unitário</th>
           <th>Valor Total</th>
           <th>Data</th>
+          <th>Forma de Pagamento</th>
+          <th>Fiado</th>
         </tr>
       </thead>
       <tbody>
@@ -99,6 +139,11 @@
           <td>{{ getPrecoProduto(v.produtoId) | number : "1.2-2" }}</td>
           <td class="text-success fw-bold">{{ v.valorTotal | currency : "BRL" }}</td>
           <td>{{ v.dataVenda | date : "dd/MM/yyyy" }}</td>
+          <td>{{ v.formaPagamento }}</td>
+          <td>
+            <span *ngIf="v.fiado">Fiado</span>
+            <span *ngIf="!v.fiado">À vista</span>
+          </td>
         </tr>
       </tbody>
     </table>

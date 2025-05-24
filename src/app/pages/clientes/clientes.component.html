@@ -1,0 +1,36 @@
+.component.html -->
+<div class="container mt-5">
+  <div class="card p-4 mb-4">
+    <h3>Cadastrar Cliente</h3>
+    <form (ngSubmit)="cadastrarCliente()">
+      <div class="mb-3">
+        <label class="form-label">Nome</label>
+        <input [(ngModel)]="nome" name="nome" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Telefone</label>
+        <input [(ngModel)]="telefone" name="telefone" class="form-control">
+      </div>
+      <button class="btn btn-primary" type="submit">Cadastrar</button>
+    </form>
+    <div *ngIf="mensagem" class="alert alert-info mt-2">{{ mensagem }}</div>
+  </div>
+
+  <div class="card p-4">
+    <h3>Lista de Clientes</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Telefone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of clientes">
+          <td>{{ c.nome }}</td>
+          <td>{{ c.telefone }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

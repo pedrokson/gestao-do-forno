@@ -5,4 +5,7 @@ export interface Sale {
   valorTotal: number;
   dataVenda: string;
   clienteId: number;
+  formaPagamento: string; // << NOVO CAMPO
+  fiado: boolean; // << NOVO CAMPO
+
 }
